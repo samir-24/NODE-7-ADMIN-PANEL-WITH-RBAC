@@ -1,0 +1,98 @@
+<%- include('header') %>
+
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <h3>View Tables</h3>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"> <i data-feather="home"> </i></a></li>
+                            <li class="breadcrumb-item">Admin</li>
+                            <li class="breadcrumb-item active">View Table</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>View Table</h5><span>Use a view<code>table</code></span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Sr No</th>
+                                        <th scope="col">Avatar</th>
+                                        <th scope="col">First Name</th>
+                                        <th scope="col">Last Name</th>
+                                        <th scope="col">Username</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Contact Number</th>
+                                        <th scope="col">Gender</th>
+                                        <th scope="col">Role</th>
+                                        <th scope="col">City</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% let i=1; %>
+                                        <% adminData.map((a)=> { %>
+                                            <tr>
+                                                <th scope="row">
+                                                    <%= i %>
+                                                </th>
+                                                <td>
+                                                    <img src="<%= a.avatar %>" alt="Avatar" width="80" height="80">
+                                                </td>
+                                                <td>
+                                                    <%= a.fname %>
+                                                </td>
+
+                                                <td>
+                                                    <%= a.lname %>
+                                                </td>
+                                                <td>
+                                                    <%= a.uname %>
+                                                </td>
+                                                <td>
+                                                    <%= a.email %>
+                                                </td>
+                                                <td>
+                                                    <%= a.mobile %>
+                                                </td>
+                                                <td>
+                                                    <%= a.gender %>
+                                                </td>
+                                                <td>
+                                                    <%= a.role %>
+                                                </td>
+                                                <td>
+                                                    <%= a.city %>
+                                                </td>
+                                                <td>
+                                                    <a href="/edit-admin/<%= a._id %>" class="pe-3 fs-5 text-warning"><i class="icofont icofont-ui-edit"></i></a>
+                                                    <a href="/delete-admin/<%= a._id %>" class="fs-5 text-danger" onclick="return confirm('Are you sure you want to delete this admin?')"> <i class="icofont icofont-ui-delete"></i></a>
+                                                </td>
+                                            </tr>
+                                            <% }) %>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Container-fluid Ends-->
+    </div>
+
+    <%- include('footer') %>

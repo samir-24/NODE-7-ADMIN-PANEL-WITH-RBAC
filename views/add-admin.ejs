@@ -1,0 +1,169 @@
+<%- include('header') %>
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <h3>Admin Form </h3>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"> <i data-feather="home"></i></a></li>
+                            <li class="breadcrumb-item"> Admin Layout</li>
+                            <li class="breadcrumb-item active"> Add Admin Forms</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-xl-6">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header pb-0">
+                                    <h5>Add Admin Data </h5>
+                                </div>
+                                <div class="card-body">
+                                    <form class="theme-form" action="/add-admin" method="post"
+                                        enctype="multipart/form-data">
+                                        <div class="mb-3">
+                                            <label class="col-form-label pt-0">First
+                                                Name</label>
+                                            <input class="form-control" type="text" name="fname"
+                                                placeholder="Enter Your First Name">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="col-form-label pt-0">Last
+                                                Name</label>
+                                            <input class="form-control" type="text" name="lname"
+                                                placeholder="Enter Your Last Name">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="col-form-label pt-0">User
+                                                Name</label>
+                                            <input class="form-control" type="text" name="uname"
+                                                placeholder="Enter Your User Name" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="col-form-label pt-0">Email
+                                                address</label>
+                                            <input class="form-control" type="email" name="email"
+                                                placeholder="Enter Your Email Id">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="col-form-label pt-0">Password</label>
+                                            <input class="form-control" name="password" type="password"
+                                                placeholder="Enter Your Password">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="col-form-label pt-0">Date Of Birth</label>
+                                            <input type="date" name="dob" class="form-control digits datepicker-here "
+                                               data-language="en" >
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="col-form-label pt-0">Contact Number</label>
+                                            <input class="form-control" name="mobile" type="number"
+                                                placeholder="Enter Your Contact Number">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="col-form-label pt-0">Gender</label>
+                                            <div class="col">
+                                                <div class="m-t-15 m-checkbox-inline custom-radio-ml">
+                                                    <div class="form-check form-check-inline radio radio-primary">
+                                                        <input class="form-check-input" id="radioinline1" type="radio"
+                                                            name="gender" value="male">
+                                                        <label class="form-check-label mb-0"
+                                                            for="radioinline1">Male</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline radio radio-primary">
+                                                        <input class="form-check-input" id="radioinline2" type="radio"
+                                                            name="gender" value="female">
+                                                        <label class="form-check-label mb-0"
+                                                            for="radioinline2">Female</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="col-form-label pt-0">Hobby</label>
+                                            <div class="col-sm-9">
+                                                <div class="mb-0">
+                                                    <div class="form-check form-check-inline checkbox checkbox-primary">
+                                                        <input class="form-check-input" id="inline-form-1"
+                                                            type="checkbox" value="writing" name="hobby">
+                                                        <label class="form-check-label" for="inline-form-1">Writing
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline checkbox checkbox-primary">
+                                                        <input class="form-check-input" id="inline-form-2"
+                                                            type="checkbox" value="reading" name="hobby">
+                                                        <label class="form-check-label" for="inline-form-2">Reading
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline checkbox checkbox-primary">
+                                                        <input class="form-check-input" id="inline-form-3"
+                                                            type="checkbox" value="travelling" name="hobby">
+                                                        <label class="form-check-label" for="inline-form-3">Travelling
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline checkbox checkbox-primary">
+                                                        <input class="form-check-input" id="inline-form-4"
+                                                            type="checkbox" value="gaming" name="hobby">
+                                                        <label class="form-check-label" for="inline-form-4">Gaming
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="col-form-label pt-0">City</label>
+                                            <select name="city" class="js-example-basic-single col-sm-12">
+                                                <optgroup>
+                                                    <option value="Surat">Surat</option>
+                                                    <option value="Vadodara">Vadodara</option>
+                                                    <option value="Ahmedabad">Ahmedabad</option>
+                                                    <option value="Pune">Pune</option>
+                                                    <option value="Mumbai">Mumbai</option>
+                                                    <option value="Bengluru">Bengluru</option>
+                                                    <option value="Delhi">Delhi</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="col-form-label pt-0">Role</label>
+                                            <select name="role" class="js-example-basic-single col-sm-12">
+                                                <optgroup>
+                                                    <option value="Super Admin">Super Admin</option>
+                                                    <option value="Admin">Admin</option>
+                                                    <option value="Manager">Manager</option>
+                                                    <option value="Editor">Editor</option>
+                                                    <option value="User">User</option>
+                                                </optgroup>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="col-form-label pt-0">Address</label>
+                                            <textarea name="address" id="" class="w-100 form-control"
+                                                style="resize: none; height: 100px;"></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="avatar">Avatar</label>
+                                            <input type="file" name="avatar" id="" class="w-100 form-control">
+                                        </div>
+                                        <div class="mb-3 pt-3">
+                                            <button class="btn btn-primary" type="submit">Submit</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Container-fluid Ends-->
+    </div>
+    <%- include('footer') %>

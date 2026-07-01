@@ -1,0 +1,190 @@
+<%- include('header') %>
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <h3>Edit Profile</h3>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"> <i data-feather="home"></i></a></li>
+                            <li class="breadcrumb-item">User</li>
+                            <li class="breadcrumb-item active"> User Edit</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="edit-profile">
+                <form action="/update-profile" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-xl-4">
+                            <div class="card">
+                                <div class="card-header pb-0">
+                                    <h4 class="card-title mb-0">My Profile</h4>
+                                    <div class="card-options">
+                                        <a class="card-options-collapse" href="#" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                                        <a class="card-options-remove" href="#" data-bs-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row mb-2">
+                                        <div class="profile-title">
+                                            <div class="media">
+
+    <img class="img-70 rounded-circle"
+        src="<%= admin.avatar %>"
+        alt="Profile Image">
+
+    <div class="media-body">
+
+        <h3 class="mb-1 f-20 txt-primary">
+            <%= admin.fname %> <%= admin.lname %>
+        </h3>
+
+        <p class="f-12">DESIGNER</p>
+
+        <div class="mt-2">
+
+            <label class="form-label">
+                Change Profile Image
+            </label>
+
+            <input
+                type="file"
+                class="form-control"
+                name="avatar">
+
+        </div>
+
+    </div>
+
+</div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Bio</label>
+                                        <textarea class="form-control" name="bio"><%= admin.bio %></textarea>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label">Email-Address</label>
+                                        <input type="email" class="form-control" name="email" value="<%= admin.email %>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-xl-8">
+                            <div class="card">
+                                <div class="card-header pb-0">
+                                    <h4 class="card-title mb-0">Edit Profile</h4>
+                                    <div class="card-options">
+                                        <a class="card-options-collapse" href="#" data-bs-toggle="card-collapse"><i class="fe fe-chevron-up"></i></a>
+                                        <a class="card-options-remove" href="#" data-bs-toggle="card-remove"><i class="fe fe-x"></i></a>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">First Name</label>
+                                                <input class="form-control" type="text" name="fname" value="<%= admin.fname %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-6">
+                                            <div class="mb-3">
+                                                <label class="form-label">Last Name</label>
+                                                <input type="text" class="form-control" name="lname" value="<%= admin.lname %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5 col-md-3">
+                                            <div class="mb-3">
+                                                <label class="col-form-label pt-0">User Name</label>
+                                                <input class="form-control" type="text" name="uname" placeholder="Enter Your User Name" value="<%= admin.uname || '' %>" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <div class="mb-3">
+                                                <label class="col-form-label pt-0">Date Of Birth</label>
+                                                <input class="datepicker-here form-control digits" type="text" data-language="en" name="dob" placeholder="Enter your Birthdate" value="<%= admin.dob || '' %>">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <div class="mb-3">
+                                                <label class="col-form-label pt-0">Gender</label>
+                                                <div class="col">
+                                                    <div class="m-t-15 m-checkbox-inline custom-radio-ml">
+                                                        <div class="form-check form-check-inline radio radio-primary">
+                                                            <input class="form-check-input" id="radioinline1" type="radio" name="gender" value="male" <%= admin.gender === 'male' ? 'checked' : '' %>>
+                                                            <label class="form-check-label mb-0" for="radioinline1">Male</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline radio radio-primary">
+                                                            <input class="form-check-input" id="radioinline2" type="radio" name="gender" value="female" <%= admin.gender === 'female' ? 'checked' : '' %>>
+                                                            <label class="form-check-label mb-0" for="radioinline2">Female</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label class="col-form-label pt-0">Hobby</label>
+                                                <div class="col-sm-9">
+                                                    <div class="mb-0">
+                                                        <div class="form-check form-check-inline checkbox checkbox-primary">
+                                                            <input class="form-check-input" id="inline-form-1" type="checkbox" value="writing" name="hobby">
+                                                            <label class="form-check-label" for="inline-form-1">Writing</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline checkbox checkbox-primary">
+                                                            <input class="form-check-input" id="inline-form-2" type="checkbox" value="reading" name="hobby">
+                                                            <label class="form-check-label" for="inline-form-2">Reading</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline checkbox checkbox-primary">
+                                                            <input class="form-check-input" id="inline-form-3" type="checkbox" value="travelling" name="hobby">
+                                                            <label class="form-check-label" for="inline-form-3">Travelling</label>
+                                                        </div>
+                                                        <div class="form-check form-check-inline checkbox checkbox-primary">
+                                                            <input class="form-check-input" id="inline-form-4" type="checkbox" value="gaming" name="hobby">
+                                                            <label class="form-check-label" for="inline-form-4">Gaming</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label class="form-label">Address</label>
+                                                <textarea class="form-control" rows="5" name="address" placeholder="Enter your Address"><%= admin.address || '' %></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <div class="mb-3">
+                                                <label class="col-form-label pt-0">City</label>
+                                                <select name="city" class="js-example-basic-single col-sm-12">
+                                                    <optgroup>
+                                                        <option value="Surat" <%= admin.city === 'Surat' ? 'selected' : '' %>>Surat</option>
+                                                        <option value="Vadodara" <%= admin.city === 'Vadodara' ? 'selected' : '' %>>Vadodara</option>
+                                                        <option value="Ahmedabad" <%= admin.city === 'Ahmedabad' ? 'selected' : '' %>>Ahmedabad</option>
+                                                        <option value="Pune" <%= admin.city === 'Pune' ? 'selected' : '' %>>Pune</option>
+                                                        <option value="Mumbai" <%= admin.city === 'Mumbai' ? 'selected' : '' %>>Mumbai</option>
+                                                        <option value="Bengluru" <%= admin.city === 'Bengluru' ? 'selected' : '' %>>Bengluru</option>
+                                                        <option value="Delhi" <%= admin.city === 'Delhi' ? 'selected' : '' %>>Delhi</option>
+                                                    </optgroup>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-footer text-end">
+                                    <button class="btn btn-primary" type="submit">Update Profile</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+<%- include('footer') %>
