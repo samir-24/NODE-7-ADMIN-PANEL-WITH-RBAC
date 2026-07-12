@@ -1,0 +1,131 @@
+<%- include('header') %>
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <h3>View Tables</h3>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"> <i data-feather="home"> </i></a></li>
+                            <li class="breadcrumb-item">Admin</li>
+                            <li class="breadcrumb-item active">View Table</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5>View Table</h5><span>Use a view<code>table</code></span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table table-hover align-middle text-center">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="width:5%">Sr No</th>
+                                        <th scope="col" style="width:10%">Category </th>
+                                        <th scope="col" style="width:15%">Sub Category </th>
+                                        <th scope="col" style="width:45%">Description</th>
+                                        <th scope="col" style="width:10%">Status</th>
+                                        <th scope="col" style="width:15%">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% subCategoryData.forEach((sub, index)=> { %>
+                                        <tr>
+
+                                            <td>
+                                                <%= ((currentPage - 1) * limit) + index + 1 %>
+                                            </td>
+
+                                            <td>
+                                                <%= sub.categoryId.categoryName %>
+                                            </td>
+
+                                            <td>
+                                                <%= sub.subCategoryName %>
+                                            </td>
+
+                                            <td>
+                                                <%= sub.subCategoryDescription %>
+                                            </td>
+
+                                            <td>
+                                                <div class="media-body switch-sm">
+                                               
+                                              <label class="switch">
+
+    <input type="checkbox"
+    <%= sub.status ? "checked" : "" %>
+    onchange="changeStatus('<%= sub._id %>')">
+
+    <span class="switch-state"></span>
+
+</label>
+                                                     
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <a href="/subCategory/edit-subCategory/<%= sub._id %>"
+                                                    class="text-warning fs-5 pe-4">
+                                                    <i class="icofont icofont-ui-edit"></i>
+                                                </a>
+                                                <a href="/subCategory/delete-subCategory/<%= sub._id %>"
+                                                    onclick="return confirm('Are you sure?')" class="text-danger fs-5">
+                                                    <i class="icofont icofont-ui-delete"></i>
+                                                </a>
+                                            </td>
+
+                                        </tr>
+                                        <% }) %>
+                                </tbody>
+                            </table>
+                            <div class="card-body d-flex justify-content-end">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination pagination-primary">
+
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">Previous</a>
+                                        </li>
+
+                                        <li class="page-item <%= currentPage == 1 ? 'active-grey' : '' %>">
+                                            <a class="page-link" href="/subCategory/view-subCategory?page=1">1</a>
+                                        </li>
+
+                                        <li class="page-item <%= currentPage == 2 ? 'active-grey' : '' %>">
+                                            <a class="page-link" href="/subCategory/view-subCategory?page=2">2</a>
+                                        </li>
+
+                                        <li class="page-item <%= currentPage == 3 ? 'active-grey' : '' %>">
+                                            <a class="page-link" href="/subCategory/view-subCategory?page=3">3</a>
+                                        </li>
+
+                                        <li class="page-item">
+                                            <a class="page-link" href="#">Next</a>
+                                        </li>
+
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Container-fluid Ends-->
+    </div>
+
+    <script>
+    function changeStatus(id){
+        window.location = "/subCategory/changeStatus/" + id;
+    }
+</script>
+    <%- include('footer') %>

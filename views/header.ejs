@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">  
+<html lang="en">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -21,7 +21,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="assets/css/vendors/font-awesome.css">
+  <link rel="stylesheet" type="text/css" href="/assets/css/vendors/font-awesome.css">
   <!-- ico-font-->
   <link rel="stylesheet" type="text/css" href="/assets/css/vendors/icofont.css">
   <!-- Themify icon-->
@@ -302,7 +302,7 @@
                 <ul class="custom-scrollbar">
                   <li>
                     <div class="media">
-                      <div class="notification-img bg-light-primary"><img src="assets/images/avtar/man.png" alt="">
+                      <div class="notification-img bg-light-primary"><img src="/assets/images/avtar/man.png" alt="">
                       </div>
                       <div class="media-body">
                         <h5> <a class="f-14 m-0" href="user-profile.html">Allie Grater</a></h5>
@@ -313,7 +313,7 @@
                   </li>
                   <li>
                     <div class="media">
-                      <div class="notification-img bg-light-secondary"><img src="assets/images/avtar/teacher.png"
+                      <div class="notification-img bg-light-secondary"><img src="/assets/images/avtar/teacher.png"
                           alt=""></div>
                       <div class="media-body">
                         <h5> <a class="f-14 m-0" href="user-profile.html">Olive Yew</a></h5>
@@ -324,7 +324,7 @@
                   </li>
                   <li>
                     <div class="media">
-                      <div class="notification-img bg-light-info"><img src="assets/images/avtar/teenager.png" alt="">
+                      <div class="notification-img bg-light-info"><img src="/assets/images/avtar/teenager.png" alt="">
                       </div>
                       <div class="media-body">
                         <h5> <a class="f-14 m-0" href="user-profile.html">Peg Legge</a></h5>
@@ -335,7 +335,7 @@
                   </li>
                   <li>
                     <div class="media">
-                      <div class="notification-img bg-light-success"><img src="assets/images/avtar/chinese.png" alt="">
+                      <div class="notification-img bg-light-success"><img src="/assets/images/avtar/chinese.png" alt="">
                       </div>
                       <div class="media-body">
                         <h5> <a class="f-14 m-0" href="user-profile.html">Teri Dactyl</a></h5>
@@ -388,7 +388,7 @@
               </div>
               <ul class="profile-dropdown onhover-show-div">
                 <li><a href="/edit-profile"><i data-feather="settings"></i><span>Edit Profile</span></a></li>
-                <li><a href="/forgetPassword"><i data-feather="user"></i><span>Password</span></a></li>
+                <li><a href="/resetPassword"><i data-feather="user"></i><span>Password</span></a></li>
                 <li><a href="/logout"><i data-feather="log-out"> </i><span>Log Out</span></a></li>
               </ul>
             </li>
@@ -412,11 +412,11 @@
       <!-- Page Sidebar Start-->
       <div class="sidebar-wrapper">
         <div>
-          <div class="logo-wrapper"><a href="/"><img class="img-fluid for-light" src="assets/images/logo/small-logo.png"
-                alt=""><img class="img-fluid for-dark" src="assets/images/logo/small-white-logo.png" alt=""></a>
+          <div class="logo-wrapper"><a href="/"><img class="img-fluid for-light" src="/assets/images/logo/small-logo.png"
+                alt=""><img class="img-fluid for-dark" src="/assets/images/logo/small-white-logo.png" alt=""></a>
             <div class="back-btn"><i class="fa fa-angle-left"></i></div>
           </div>
-          <div class="logo-icon-wrapper"><a href="/"><img class="img-fluid" src="assets/images/logo-icon.png"
+          <div class="logo-icon-wrapper"><a href="/"><img class="img-fluid" src="/assets/images/logo-icon.png"
                 alt=""></a></div>
           <nav class="sidebar-main">
             <div class="left-arrow" id="left-arrow"><i data-feather="arrow-left"></i></div>
@@ -468,6 +468,130 @@
                   <ul class="sidebar-submenu">
                     <li><a href="/add-admin">Add Admin</a></li>
                     <li><a href="/view-admin">View Admin</a></li>
+                  </ul>
+                </li>
+
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g>
+                        <g>
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M11.9724 20.3683C8.73343 20.3683 5.96643 19.8783 5.96643 17.9163C5.96643 15.9543 8.71543 14.2463 11.9724 14.2463C15.2114 14.2463 17.9784 15.9383 17.9784 17.8993C17.9784 19.8603 15.2294 20.3683 11.9724 20.3683Z"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M11.9725 11.4488C14.0985 11.4488 15.8225 9.72576 15.8225 7.59976C15.8225 5.47376 14.0985 3.74976 11.9725 3.74976C9.84645 3.74976 8.12245 5.47376 8.12245 7.59976C8.11645 9.71776 9.82645 11.4418 11.9455 11.4488H11.9725Z"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path
+                            d="M18.3622 10.3915C19.5992 10.0605 20.5112 8.93254 20.5112 7.58954C20.5112 6.18854 19.5182 5.01854 18.1962 4.74854"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path
+                            d="M18.9431 13.5444C20.6971 13.5444 22.1951 14.7334 22.1951 15.7954C22.1951 16.4204 21.6781 17.1014 20.8941 17.2854"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path
+                            d="M5.58372 10.3915C4.34572 10.0605 3.43372 8.93254 3.43372 7.58954C3.43372 6.18854 4.42772 5.01854 5.74872 4.74854"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path
+                            d="M5.00176 13.5444C3.24776 13.5444 1.74976 14.7334 1.74976 15.7954C1.74976 16.4204 2.26676 17.1014 3.05176 17.2854"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
+                      </g>
+                    </svg><span>Category</span></a>
+                  <ul class="sidebar-submenu">
+                    <li><a href="/category/add-category">Add Category</a></li>
+                    <li><a href="/category/view-category">View Category</a></li>
+                  </ul>
+                </li>
+
+                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g>
+                        <g>
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M11.9724 20.3683C8.73343 20.3683 5.96643 19.8783 5.96643 17.9163C5.96643 15.9543 8.71543 14.2463 11.9724 14.2463C15.2114 14.2463 17.9784 15.9383 17.9784 17.8993C17.9784 19.8603 15.2294 20.3683 11.9724 20.3683Z"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M11.9725 11.4488C14.0985 11.4488 15.8225 9.72576 15.8225 7.59976C15.8225 5.47376 14.0985 3.74976 11.9725 3.74976C9.84645 3.74976 8.12245 5.47376 8.12245 7.59976C8.11645 9.71776 9.82645 11.4418 11.9455 11.4488H11.9725Z"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path
+                            d="M18.3622 10.3915C19.5992 10.0605 20.5112 8.93254 20.5112 7.58954C20.5112 6.18854 19.5182 5.01854 18.1962 4.74854"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path
+                            d="M18.9431 13.5444C20.6971 13.5444 22.1951 14.7334 22.1951 15.7954C22.1951 16.4204 21.6781 17.1014 20.8941 17.2854"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path
+                            d="M5.58372 10.3915C4.34572 10.0605 3.43372 8.93254 3.43372 7.58954C3.43372 6.18854 4.42772 5.01854 5.74872 4.74854"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path
+                            d="M5.00176 13.5444C3.24776 13.5444 1.74976 14.7334 1.74976 15.7954C1.74976 16.4204 2.26676 17.1014 3.05176 17.2854"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
+                      </g>
+                    </svg><span>Sub Category</span></a>
+                  <ul class="sidebar-submenu">
+                    <li><a href="/subCategory/add-subCategory">Add Sub Category</a></li>
+                    <li><a href="/subCategory/view-subCategory">View Sub Category</a></li>
+                  </ul>
+                </li>
+
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g>
+                        <g>
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M11.9724 20.3683C8.73343 20.3683 5.96643 19.8783 5.96643 17.9163C5.96643 15.9543 8.71543 14.2463 11.9724 14.2463C15.2114 14.2463 17.9784 15.9383 17.9784 17.8993C17.9784 19.8603 15.2294 20.3683 11.9724 20.3683Z"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M11.9725 11.4488C14.0985 11.4488 15.8225 9.72576 15.8225 7.59976C15.8225 5.47376 14.0985 3.74976 11.9725 3.74976C9.84645 3.74976 8.12245 5.47376 8.12245 7.59976C8.11645 9.71776 9.82645 11.4418 11.9455 11.4488H11.9725Z"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path
+                            d="M18.3622 10.3915C19.5992 10.0605 20.5112 8.93254 20.5112 7.58954C20.5112 6.18854 19.5182 5.01854 18.1962 4.74854"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path
+                            d="M18.9431 13.5444C20.6971 13.5444 22.1951 14.7334 22.1951 15.7954C22.1951 16.4204 21.6781 17.1014 20.8941 17.2854"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path
+                            d="M5.58372 10.3915C4.34572 10.0605 3.43372 8.93254 3.43372 7.58954C3.43372 6.18854 4.42772 5.01854 5.74872 4.74854"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path
+                            d="M5.00176 13.5444C3.24776 13.5444 1.74976 14.7334 1.74976 15.7954C1.74976 16.4204 2.26676 17.1014 3.05176 17.2854"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
+                      </g>
+                    </svg><span>Extra Category</span></a>
+                  <ul class="sidebar-submenu">
+                    <li><a href="/extraCategory/add-extraCategory">Add Extra Category</a></li>
+                    <li><a href="/extraCategory/view-extraCategory">View Extra Category</a></li>
+                  </ul>
+                </li>
+                
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <g>
+                        <g>
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M11.9724 20.3683C8.73343 20.3683 5.96643 19.8783 5.96643 17.9163C5.96643 15.9543 8.71543 14.2463 11.9724 14.2463C15.2114 14.2463 17.9784 15.9383 17.9784 17.8993C17.9784 19.8603 15.2294 20.3683 11.9724 20.3683Z"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M11.9725 11.4488C14.0985 11.4488 15.8225 9.72576 15.8225 7.59976C15.8225 5.47376 14.0985 3.74976 11.9725 3.74976C9.84645 3.74976 8.12245 5.47376 8.12245 7.59976C8.11645 9.71776 9.82645 11.4418 11.9455 11.4488H11.9725Z"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path
+                            d="M18.3622 10.3915C19.5992 10.0605 20.5112 8.93254 20.5112 7.58954C20.5112 6.18854 19.5182 5.01854 18.1962 4.74854"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path
+                            d="M18.9431 13.5444C20.6971 13.5444 22.1951 14.7334 22.1951 15.7954C22.1951 16.4204 21.6781 17.1014 20.8941 17.2854"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path
+                            d="M5.58372 10.3915C4.34572 10.0605 3.43372 8.93254 3.43372 7.58954C3.43372 6.18854 4.42772 5.01854 5.74872 4.74854"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          <path
+                            d="M5.00176 13.5444C3.24776 13.5444 1.74976 14.7334 1.74976 15.7954C1.74976 16.4204 2.26676 17.1014 3.05176 17.2854"
+                            stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </g>
+                      </g>
+                    </svg><span>Product</span></a>
+                  <ul class="sidebar-submenu">
+                    <li><a href="/product/add-product">Add Product </a></li>
+                    <li><a href="/product/view-product">View Product </a></li>
                   </ul>
                 </li>
               </ul>

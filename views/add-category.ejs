@@ -1,0 +1,61 @@
+<%- include('header') %>
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <h3>Category Form </h3>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"> <i data-feather="home"></i></a></li>
+                            <li class="breadcrumb-item"> Category Layout</li>
+                            <li class="breadcrumb-item active"> Add Category Forms</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-xl-6">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header pb-0">
+                                    <h5>Add Category Data </h5>
+                                </div>
+                                <div class="card-body">
+                                    <form class="theme-form" action="/category/insert-category" method="POST" enctype="multipart/form-data">
+                                        <div class="mb-3">
+                                            <label class="col-form-label pt-0">Category
+                                                Name</label>
+                                            <input class="form-control" type="text" name="categoryName"
+                                                placeholder="Enter Your Category Name">
+                                        </div>
+                                       
+                                        <div class="mb-3">
+                                            <label class="col-form-label pt-0">Description</label>
+                                            <textarea name="categoryDescription" id="" class="w-100 form-control"
+                                                style="resize: none; height: 100px;"></textarea>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="avatar">Category Image</label>
+                                            <input type="file" name="categoryImage" id="" class="w-100 form-control">
+                                        </div>
+                                        <div class="mb-3 pt-3">
+                                            <button class="btn btn-primary" type="submit">Add Category</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Container-fluid Ends-->
+    </div>
+    <%- include('footer') %>

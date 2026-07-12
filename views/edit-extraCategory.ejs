@@ -1,0 +1,92 @@
+<%- include('header') %>
+<div class="page-body">
+        <div class="container-fluid">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <h3>Edit Extra Category</h3>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/">
+                                    <i data-feather="home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">
+                                Extra Category Layout
+                            </li>
+                            <li class="breadcrumb-item active">
+                                Edit Extra Category
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-xl-6">
+                    <div class="card">
+                        <div class="card-header pb-0">
+                            <h5>Edit Extra Category Data</h5>
+                        </div>
+                        <div class="card-body">
+                            <form action="/extraCategory/update-extraCategory/<%= extraCategoryData._id %>"
+                                method="POST">
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">
+                                        Select Category
+                                    </label>
+                                    <select name="categoryId" class="form-control">
+                                        <% categoryData.forEach(category=> { %>
+                                            <option value="<%= category._id %>"
+                                                <%=String(category._id)===String(extraCategoryData.categoryId)
+                                                ? "selected" : "" %>>
+                                                <%= category.categoryName %>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">
+                                        Select Sub Category
+                                    </label>
+                                    <select name="subCategoryId" class="form-control">
+                                        <% subCategoryData.forEach(sub=> { %>
+                                            <option value="<%= sub._id %>"
+                                                <%=String(sub._id)===String(extraCategoryData.subCategoryId)
+                                                ? "selected" : "" %>>
+
+                                                <%= sub.subCategoryName %>
+                                            </option>
+                                            <% }) %>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">
+                                        Extra Category Name
+                                    </label>
+                                    <input type="text" name="extraCategoryName" class="form-control"
+                                        value="<%= extraCategoryData.extraCategoryName %>">
+                                </div>
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">
+                                        Description
+                                    </label>
+                                    <textarea name="extraCategoryDescription"
+                                        class="form-control"><%= extraCategoryData.extraCategoryDescription %></textarea>
+                                </div>
+                                <div class="mb-3 pt-3">
+                                    <button class="btn btn-primary" type="submit">
+                                        Update Extra Category
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <%- include('footer') %>

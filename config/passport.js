@@ -4,25 +4,39 @@ const bcrypt = require('bcrypt');
 
 const Admin = require('../models/adminModel');
 
-passport.use(new LocalStrategy({
+passport.use(new LocalStrategy(
+{
+    usernameField: "email"
+},
+async (email, password, done) => {
 
-    usernameField : "email"
+    try {
 
-},async(email,password,done)=>{
+        let user = await Admin.findOne({ email });
 
-    let user = await Admin.findOne({email : email});
+        console.log("User:", user);
 
-    if(!user){
-        return done(null,false);
+        if (!user) {
+            console.log("User not found");
+            return done(null, false);
+        }
+
+        let checkPassword = await bcrypt.compare(password, user.password);
+
+        console.log("Entered Password:", password);
+        console.log("Database Password:", user.password);
+        console.log("Password Match:", checkPassword);
+
+        if (!checkPassword) {
+            console.log("Password incorrect");
+            return done(null, false);
+        }
+
+        return done(null, user);
+
+    } catch (err) {
+        return done(err);
     }
-
-    let checkPassword = await bcrypt.compare(password,user.password);
-
-    if(!checkPassword){
-        return done(null,false);
-    }
-
-    return done(null,user);
 
 }));
 
@@ -34,9 +48,20 @@ passport.serializeUser((user,done)=>{
 
 passport.deserializeUser(async(id,done)=>{
 
-    let user = await Admin.findById(id);
+    try{
 
-    done(null,user);
+        let user = await Admin.findById(id);
+
+        console.log("DESERIALIZE:",user);
+
+        done(null,user);
+
+    }catch(err){
+
+        console.log(err);
+        done(err);
+
+    }
 
 });
 

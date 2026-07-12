@@ -1,0 +1,185 @@
+<%- include('header') %>
+
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <h3>Product Form</h3>
+                    </div>
+
+                    <div class="col-12 col-sm-6">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/">
+                                    <i data-feather="home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">Product</li>
+                            <li class="breadcrumb-item active">Add Product </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-xl-6">
+
+                    <div class="card">
+
+                        <div class="card-header pb-0">
+                            <h5>Add Product </h5>
+                        </div>
+
+                        <div class="card-body">
+
+                            <form action="/product/update-product/<%= productData._id %>" method="POST"
+                                enctype="multipart/form-data">
+
+                                <!-- Category -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Category</label>
+                                    <select name="categoryId" class="js-example-basic-single col-sm-12">
+
+                                        <% categoryData.forEach(category=>{ %>
+
+                                            <option value="<%= category._id %>"
+                                                <%=String(category._id)==String(productData.categoryId) ? "selected" :""
+                                                %>>
+
+                                                <%= category.categoryName %>
+
+                                            </option>
+
+                                            <% }) %>
+
+                                    </select>
+                                </div>
+
+                                <!-- Sub Category -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Sub Category</label>
+                                    <select name="subCategoryId" class="js-example-basic-single col-sm-12">
+
+                                        <% subCategoryData.forEach(sub=>{ %>
+
+                                            <option value="<%= sub._id %>"
+                                                <%=String(sub._id)==String(productData.subCategoryId) ? "selected" :""
+                                                %>>
+
+                                                <%= sub.subCategoryName %>
+
+                                            </option>
+
+                                            <% }) %>
+
+                                    </select>
+                                </div>
+
+                                <!-- Extra Category -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Extra Category</label>
+                                    <select name="extraCategoryId" class="js-example-basic-single col-sm-12">
+
+                                        <% extraCategoryData.forEach(ex=>{ %>
+
+                                            <option value="<%= ex._id %>"
+                                                <%=String(ex._id)==String(productData.extraCategoryId) ? "selected" :""
+                                                %>>
+
+                                                <%= ex.extraCategoryName %>
+
+                                            </option>
+
+                                            <% }) %>
+
+                                    </select>
+                                </div>
+
+                                <!-- Product Name -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Product Name</label>
+                                    <input type="text" name="productName" class="form-control"
+                                        value="<%= productData.productName %>">
+                                </div>
+
+                                <!-- Brand -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Product Brand</label>
+                                    input
+                                    type="text"
+                                    name="productBrand"
+                                    class="form-control"
+                                    value="<%= productData.productBrand %>">
+                                </div>
+
+                                <!-- Price -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Price</label>
+                                    <input type="number" name="price" class="form-control"
+                                        value="<%= productData.price %>">
+                                </div>
+
+                                <!-- Discount Price -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Discount Price</label>
+                                    <input type="number" name="discountPrice" class="form-control"
+                                        value="<%= productData.discountPrice %>">
+                                </div>
+
+                                <!-- Quantity -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Quantity</label>
+                                    <input type="number" name="quantity" class="form-control"
+                                        value="<%= productData.quantity %>">
+                                </div>
+
+                                <!-- Short Description -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Short Description</label>
+                                    <textarea name="shortDescription" class="form-control"
+                                        style="height:100px;resize:none;"><%= productData.shortDescription %></textarea>
+                                </div>
+
+                                <!-- Description -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Description</label>
+                                    <textarea name="description" class="form-control"
+                                        style="height:150px;resize:none;"><%= productData.description %></textarea>
+                                </div>
+
+                                <!-- Product Image -->
+                                <div class="mb-3">
+
+                                    <label>Product Image</label>
+                                    <% if (productData.productImage) { %>
+                                        <div class="mb-2">
+                                            <img src="<%= productData.productImage %>" alt="Avatar" width="80"
+                                                height="80">
+                                        </div>
+                                        <% } %>
+                                            <input type="file" name="productImage" class="form-control">
+
+                                </div>
+
+                                <div class="mb-3 pt-3">
+                                    <button class="btn btn-primary" type="submit">
+                                        Update Product
+                                    </button>
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <%- include('footer') %>

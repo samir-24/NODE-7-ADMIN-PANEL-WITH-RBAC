@@ -50,7 +50,15 @@ const adminSchema = mongoose.Schema({
     },
     role: {
         type: String,
-        // required : true
+        enum: [
+            'Super Admin',
+            'Admin',
+            'Manager',
+            'Employee',
+            'Editor',
+            'User'
+        ],
+        default: "User"
     },
     address: {
         type: String,
@@ -60,8 +68,8 @@ const adminSchema = mongoose.Schema({
         type: String,
         // required : true
     },
-    bio :{
-        type : String,
+    bio: {
+        type: String,
     }
 }, {
     timestamps: true

@@ -1,0 +1,79 @@
+<%- include('header') %>
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <h3>Sub Category Form </h3>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"> <i data-feather="home"></i></a></li>
+                            <li class="breadcrumb-item">Sub Category Layout</li>
+                            <li class="breadcrumb-item active"> Add Sub Category Forms</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Container-fluid starts-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-xl-6">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card">
+                                <div class="card-header pb-0">
+                                    <h5>Add Sub Category Data </h5>
+                                </div>
+                                <div class="card-body">
+                                   <form action="/subCategory/update-subCategory/<%= subCategory._id %>" method="POST">
+                                        <div class="mb-3">
+                                            <label class="col-form-label pt-0">Select Category</label>
+                                            <select name="categoryId" class="form-control">
+
+<% categoryData.forEach(category => { %>
+
+<option value="<%= category._id %>"
+
+<%= String(category._id) === String(subCategory.categoryId) ? "selected" : "" %>>
+
+<%= category.categoryName %>
+
+</option>
+
+<% }) %>
+
+</select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="col-form-label pt-0">Sub Category
+                                                Name</label>
+                                            <input
+type="text"
+name="subCategoryName"
+class="form-control"
+value="<%= subCategory.subCategoryName %>">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="col-form-label pt-0">Description</label>
+                                           <textarea
+name="subCategoryDescription"
+class="form-control"><%= subCategory.subCategoryDescription %></textarea>
+                                        </div>
+
+                                        <div class="mb-3 pt-3">
+                                            <button class="btn btn-primary" type="submit">Add Sub Category</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Container-fluid Ends-->
+    </div>
+    <%- include('footer') %>

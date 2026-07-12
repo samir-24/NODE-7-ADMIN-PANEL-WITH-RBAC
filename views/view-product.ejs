@@ -1,0 +1,200 @@
+<%- include('header') %>
+
+    <div class="page-body">
+
+        <div class="container-fluid">
+            <div class="page-title">
+                <div class="row">
+
+                    <div class="col-12 col-sm-6">
+                        <h3>View Products</h3>
+                    </div>
+
+                    <div class="col-12 col-sm-6">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/">
+                                    <i data-feather="home"></i>
+                                </a>
+                            </li>
+
+                            <li class="breadcrumb-item">
+                                Product
+                            </li>
+
+                            <li class="breadcrumb-item active">
+                                View Products
+                            </li>
+
+                        </ol>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+
+            <div class="row">
+
+                <div class="col-sm-12">
+
+                    <div class="card">
+
+                        <div class="card-header">
+                            <h5>View Products</h5>
+                        </div>
+
+                        <div class="table-responsive">
+
+                            <table class="table table-hover align-middle text-center">
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th>Sr No</th>
+                                        <th>Image</th>
+                                        <th>Category</th>
+                                        <th>Sub Category</th>
+                                        <th>Extra Category</th>
+                                        <th>Product Name</th>
+                                        <th>Brand</th>
+                                        <th>Price</th>
+                                        <th>Discount</th>
+                                        <th>Quantity</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+
+                                    </tr>
+
+                                </thead>
+
+                                <tbody>
+
+                                    <% let i=1; %>
+
+                                        <% productData.forEach((p)=>{ %>
+
+                                            <tr>
+
+                                                <td>
+                                                    <%= i++ %>
+                                                </td>
+
+                                                <td>
+
+                                                    <% if(p.productImage){ %>
+
+                                                        <img src="<%= p.productImage %>" width="70" height="70"
+                                                            style="object-fit:cover; border-radius:8px;">
+
+                                                        <% }else{ %>
+
+                                                            No Image
+
+                                                            <% } %>
+
+                                                </td>
+
+                                                <td>
+                                                    <%= p.categoryId ? p.categoryId.categoryName : "-" %>
+                                                </td>
+
+                                                <td>
+                                                    <%= p.subCategoryId ? p.subCategoryId.subCategoryName : "-" %>
+                                                </td>
+
+                                                <td>
+                                                    <%= p.extraCategoryId ? p.extraCategoryId.extraCategoryName : "-" %>
+                                                </td>
+
+                                                <td>
+                                                    <%= p.productName %>
+                                                </td>
+
+                                                <td>
+                                                    <%= p.productBrand %>
+                                                </td>
+
+                                                <td>
+                                                    ₹ <%= p.price %>
+                                                </td>
+
+                                                <td>
+                                                    ₹ <%= p.discountPrice %>
+                                                </td>
+
+                                                <td>
+                                                    <%= p.quantity %>
+                                                </td>
+
+
+                                                <td>
+
+                                                    <div class="media-body switch-sm">
+
+                                                        <label class="switch">
+
+                                                            <input type="checkbox" <%=p.status ? "checked" : "" %>
+                                                            onchange="changeStatus('<%= p._id %>')"
+                                                                >
+
+                                                                <span class="switch-state"></span>
+
+                                                        </label>
+
+                                                    </div>
+
+                                                </td>
+
+                                                <td>
+
+                                                    <a href="/product/edit-product/<%= p._id %>"
+                                                        class="text-warning pe-3 fs-5">
+
+                                                        <i class="icofont icofont-ui-edit"></i>
+
+                                                    </a>
+
+                                                    <a href="/product/delete-product/<%= p._id %>"
+                                                        onclick="return confirm('Are you sure?')"
+                                                        class="text-danger fs-5">
+
+                                                        <i class="icofont icofont-ui-delete"></i>
+
+                                                    </a>
+
+                                                </td>
+
+                                            </tr>
+
+                                            <% }) %>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+    function changeStatus(id){
+
+        window.location.href = "/product/change-status/" + id;
+
+    }
+
+</script>
+
+    <%- include('footer') %>

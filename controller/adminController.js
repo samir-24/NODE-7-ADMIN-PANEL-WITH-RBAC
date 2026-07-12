@@ -2,6 +2,7 @@ const Admin = require('../models/adminModel');
 const path = require('path');
 const fs = require('fs');
 const bcrypt = require('bcrypt');
+const role = require('../config/roleMiddleware');
 
 const deleteAdminAvatar = (avatar) => {
     if (!avatar) {
@@ -35,6 +36,7 @@ module.exports.registerPage = async (req, res) => {
 
         if (checkEmail) {
             console.log("User Already Exist");
+            req.flash("error", "User already exists!");
             return res.redirect('/login');
         }
 
@@ -45,16 +47,20 @@ module.exports.registerPage = async (req, res) => {
         await Admin.create(req.body);
 
         console.log("SignUp Successfully...!");
+        req.flash("success", "Signup Successfully!");
+
         return res.redirect('/login');
 
     }
     catch (err) {
         console.log(err);
+        req.flash("error", "Signup failed!");
     }
 }
 
 module.exports.loginPage = (req, res) => {
     try {
+
         return res.render('login');
     }
     catch (err) {
@@ -70,6 +76,95 @@ module.exports.forgetPasswordPage = (req, res) => {
         console.log(err);
     }
 }
+
+
+module.exports.resetPasswordPage = (req, res) => {
+    try {
+        return res.render('reset-password');
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+module.exports.updatePassword = async (req, res) => {
+    try {
+
+        // Get logged in user
+        const userData = await Admin.findById(req.user._id);
+
+        if (!userData) {
+            req.flash("error", "User not found!");
+            return res.redirect("/login");
+        }
+
+        // Check current password
+        const matchPassword = await bcrypt.compare(
+            req.body.currentPassword,
+            userData.password
+        );
+
+        if (!matchPassword) {
+            console.log("Incorrect Current Password");
+            req.flash("error", "Current Password is incorrect!");
+            return res.redirect("back");
+        }
+
+        // Check new password is not same as current password
+        const samePassword = await bcrypt.compare(
+            req.body.npass,
+            userData.password
+        );
+
+        if (samePassword) {
+            console.log("New Password cannot be same as Current Password");
+            req.flash("error", "New Password cannot be same as Current Password!");
+            return res.redirect("back");
+        }
+
+        // Check confirm password
+        if (req.body.npass !== req.body.cpass) {
+            console.log("Confirm Password does not match");
+            req.flash("error", "Confirm Password does not match!");
+            return res.redirect("back");
+        }
+
+        // Hash new password
+        const hashPassword = await bcrypt.hash(req.body.npass, 10);
+
+        // Update password
+        await Admin.findByIdAndUpdate(req.user._id, {
+            password: hashPassword
+        });
+
+        console.log("Password Changed Successfully");
+
+        req.flash("success", "Password Changed Successfully!");
+
+        // Logout user after password change
+        req.logout(function (err) {
+
+            if (err) {
+                console.log(err);
+                return res.redirect("back");
+            }
+
+            req.session.destroy(() => {
+                return res.redirect("/login");
+            });
+
+        });
+
+    } catch (err) {
+
+        console.log(err);
+        req.flash("error", "Something went wrong!");
+        return res.redirect("back");
+
+    }
+};
+
+
 
 
 
@@ -159,11 +254,13 @@ module.exports.insertAdmin = async (req, res) => {
 
         await Admin.create(req.body);
         console.log('ADMIN ADDED SUCCESSFULLY...!');
+        req.flash("success", "Admin Added Successfully!");
 
         return res.redirect('/');
     }
     catch (err) {
         console.log(err);
+        req.flash("error", "Failed to add admin!");
     }
 }
 module.exports.viewAdminPage = async (req, res) => {
@@ -200,7 +297,8 @@ module.exports.updateAdmin = async (req, res) => {
         const oldAdmin = await Admin.findById(id);
 
         if (!oldAdmin) {
-            return res.send("Admin not found");
+            req.flash("error", "Admin not found!");
+            return res.redirect("/view-admin");
         }
 
         let avatar = oldAdmin.avatar;
@@ -225,10 +323,12 @@ module.exports.updateAdmin = async (req, res) => {
             avatar: avatar
         });
 
+        req.flash("success", "Admin Updated Successfully!");
         return res.redirect('/view-admin');
     }
     catch (err) {
         console.log(err);
+        req.flash("error", "Failed to update admin!");
     }
 }
 
@@ -239,6 +339,7 @@ module.exports.deleteAdmin = async (req, res) => {
         const singleAdmin = await Admin.findById(id);
 
         if (!singleAdmin) {
+            req.flash("error", "Admin not found!");
             return res.send("Admin not found");
         }
 
@@ -246,10 +347,12 @@ module.exports.deleteAdmin = async (req, res) => {
 
         await Admin.findByIdAndDelete(id);
 
+        req.flash("success", "Admin Deleted Successfully!");
         return res.redirect('/view-admin');
     }
     catch (err) {
         console.log(err);
+        req.flash("error", "Failed to delete admin!");
     }
 }
 
@@ -325,6 +428,7 @@ module.exports.updateProfile = async (req, res) => {
         const oldData = await Admin.findById(req.user._id);
 
         if (!oldData) {
+            req.flash("error", "User not found!");
             return res.redirect("/login");
         }
 
@@ -360,6 +464,7 @@ module.exports.updateProfile = async (req, res) => {
         });
 
         console.log("Profile Updated Successfully");
+        req.flash("success", "Profile Updated Successfully!");
 
         return res.redirect("/");
 
@@ -368,7 +473,7 @@ module.exports.updateProfile = async (req, res) => {
     catch (err) {
 
         console.log(err);
-
+        req.flash("error", "Profile update failed!");
     }
 
 }

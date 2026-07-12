@@ -10,13 +10,17 @@ require('./config/passport');
 
 const session = require('express-session');
 
+const flash = require('connect-flash');
+
 const passport = require('passport');
 
 const app = express();
 
 app.set('view engine', 'ejs');
 
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.json());
 
 app.use(session({
 
@@ -36,6 +40,8 @@ app.use(session({
 
 }));
 
+app.use(flash());
+
 app.use(express.static('public'));
 
 // app.use(cookieParser());
@@ -49,7 +55,25 @@ app.get("/test-session", (req, res) => {
     res.json(req.session);
 });
 
+app.use((req, res, next) => {
+
+    res.locals.success = req.flash('success');
+
+    res.locals.error = req.flash('error');
+
+    next();
+
+});
 app.use('/', require('./routes/adminRoutes'));
+
+app.use('/category', require('./routes/categoryRoutes'));
+
+app.use('/subCategory', require('./routes/subCategoryRoutes'));
+
+app.use('/extraCategory', require('./routes/extraCategoryRoutes'));
+
+app.use('/product', require('./routes/productRoutes'));
+
 
 app.listen(port, (err) => {
     if (err) {

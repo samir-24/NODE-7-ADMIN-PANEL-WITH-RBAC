@@ -1,0 +1,162 @@
+<%- include('header') %>
+
+    <div class="page-body">
+        <div class="container-fluid">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <h3>Product Form</h3>
+                    </div>
+
+                    <div class="col-12 col-sm-6">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item">
+                                <a href="/">
+                                    <i data-feather="home"></i>
+                                </a>
+                            </li>
+                            <li class="breadcrumb-item">Product</li>
+                            <li class="breadcrumb-item active">Add Product </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12 col-xl-6">
+
+                    <div class="card">
+
+                        <div class="card-header pb-0">
+                            <h5>Add Product </h5>
+                        </div>
+
+                        <div class="card-body">
+
+                            <form action="/product/insertProduct" method="POST" class="theme-form"
+                                enctype="multipart/form-data">
+
+                                <!-- Category -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Category</label>
+                                    <select name="categoryId" class="js-example-basic-single col-sm-12" required>
+                                        <option value="">Select Category</option>
+
+                                        <% categoryData.forEach(category=> { %>
+                                            <option value="<%= category._id %>">
+                                                <%= category.categoryName %>
+                                            </option>
+                                            <% }) %>
+
+                                    </select>
+                                </div>
+
+                                <!-- Sub Category -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Sub Category</label>
+                                    <select name="subCategoryId" class="js-example-basic-single col-sm-12" required>
+
+                                        <option value="">Select Sub Category</option>
+
+                                        <% subCategoryData.forEach(sub=> { %>
+                                            <option value="<%= sub._id %>">
+                                                <%= sub.subCategoryName %>
+                                            </option>
+                                            <% }) %>
+
+                                    </select>
+                                </div>
+
+                                <!-- Extra Category -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Extra Category</label>
+                                    <select name="extraCategoryId" class="js-example-basic-single col-sm-12" required>
+
+                                        <option value="">Select Extra Category</option>
+
+                                        <% extraCategoryData.forEach(ex=> { %>
+                                            <option value="<%= ex._id %>">
+                                                <%= ex.extraCategoryName %>
+                                            </option>
+                                            <% }) %>
+
+                                    </select>
+                                </div>
+
+                                <!-- Product Name -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Product Name</label>
+                                    <input type="text" name="productName" class="form-control"
+                                        placeholder="Enter Product Name" required>
+                                </div>
+
+                                <!-- Brand -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Product Brand</label>
+                                    <input type="text" name="productBrand" class="form-control"
+                                        placeholder="Enter Brand Name" required>
+                                </div>
+
+                                <!-- Price -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Price</label>
+                                    <input type="number" name="price" class="form-control" placeholder="Enter Price"
+                                        required>
+                                </div>
+
+                                <!-- Discount Price -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Discount Price</label>
+                                    <input type="number" name="discountPrice" class="form-control"
+                                        placeholder="Enter Discount Price">
+                                </div>
+
+                                <!-- Quantity -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Quantity</label>
+                                    <input type="number" name="quantity" class="form-control"
+                                        placeholder="Enter Quantity">
+                                </div>
+
+                                <!-- Short Description -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Short Description</label>
+                                    <textarea name="shortDescription" class="form-control"
+                                        style="height:100px;resize:none;"
+                                        placeholder="Enter Short Description"></textarea>
+                                </div>
+
+                                <!-- Description -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Description</label>
+                                    <textarea name="description" class="form-control" style="height:150px;resize:none;"
+                                        placeholder="Enter Product Description"></textarea>
+                                </div>
+
+                                <!-- Product Image -->
+                                <div class="mb-3">
+                                    <label class="col-form-label pt-0">Product Image</label>
+                                    <input type="file" name="productImage" class="form-control" accept="image/*">
+                                </div>
+
+                                <div class="mb-3 pt-3">
+                                    <button class="btn btn-primary" type="submit">
+                                        Add Product
+                                    </button>
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <%- include('footer') %>
