@@ -8,11 +8,11 @@ const auth = require('../config/auth');
 
 const role = require('../config/roleMiddleware');
 
-route.get('/',auth.checkAuth,adminController.dashboardPage);
+route.get('/',auth.checkAuth,role.checkRole('Super Admin' , 'Admin' , 'Employee' , 'Manager' , 'Editor' ),adminController.dashboardPage);
 
-route.get('/add-admin',auth.checkAuth ,role.checkRole('Super Admin' , 'Admin' , 'Manager'),adminController.addAdminPage);
+route.get('/add-admin',auth.checkAuth ,role.checkRole('Super Admin' , 'Admin' ),adminController.addAdminPage);
 
-route.get('/view-admin',auth.checkAuth,role.checkRole('Super Admin' , 'Admin' , 'Manager'),   adminController.viewAdminPage);
+route.get('/view-admin',auth.checkAuth,role.checkRole('Super Admin' , 'Admin'),   adminController.viewAdminPage);
 
 route.get('/signup', adminController.signupPage);
 
@@ -51,13 +51,23 @@ route.get('/logout', adminController.logout);
 
 route.get('/forgetPassword', adminController.forgetPasswordPage);
 
+route.post('/sendOTP', adminController.sendOTP);
+
+route.get('/verifyOTP', adminController.verifyOTPPage);
+
+route.post('/verifyOTP', adminController.verifyOTP);
+
+route.get('/newPassword', adminController.newPasswordPage);
+
+route.post('/changeForgotPassword', adminController.changeForgotPassword);
+
 route.get('/resetPassword', adminController.resetPasswordPage);
 
-route.post('/updatePassword', auth.checkAuth,role.checkRole('Super Admin' , 'Admin' , 'Manager'), adminController.updatePassword);
+route.post('/updatePassword', auth.checkAuth,role.checkRole('Super Admin' , 'Admin' ), adminController.updatePassword);
 
-route.get('/edit-admin/:id', auth.checkAuth,role.checkRole('Super Admin' , 'Admin' , 'Manager'), adminController.editAdminPage);
+route.get('/edit-admin/:id', auth.checkAuth,role.checkRole('Super Admin' , 'Admin' ), adminController.editAdminPage);
 
-route.get('/delete-admin/:id', auth.checkAuth,role.checkRole('Super Admin' , 'Admin' , 'Manager'), adminController.deleteAdmin);
+route.get('/delete-admin/:id', auth.checkAuth,role.checkRole('Super Admin' , 'Admin' ), adminController.deleteAdmin);
 
 route.get('/edit-profile',role.checkRole('Super Admin' , 'Admin' , 'Manager' , 'Employee' , 'Editor'), auth.checkAuth, adminController.editProfilePage);
 

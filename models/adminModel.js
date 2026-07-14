@@ -28,6 +28,14 @@ const adminSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    otp: {
+        type: String,
+        default: null
+    },
+    otpExpires: {
+        type: Date,
+        default: null
+    },
     dob: {
         type: Date,
         // required : true

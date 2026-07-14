@@ -6,6 +6,7 @@ require('./config/db');
 
 require('./config/passport');
 
+require("dotenv").config();
 // const cookieParser = require('cookie-parser');
 
 const session = require('express-session');

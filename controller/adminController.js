@@ -3,6 +3,8 @@ const path = require('path');
 const fs = require('fs');
 const bcrypt = require('bcrypt');
 const role = require('../config/roleMiddleware');
+const transporter = require("../config/emailConfig");
+const crypto = require("crypto");   
 
 const deleteAdminAvatar = (avatar) => {
     if (!avatar) {
@@ -164,45 +166,238 @@ module.exports.updatePassword = async (req, res) => {
     }
 };
 
+module.exports.sendOTP = async (req, res) => {
 
+    try {
 
+        const { email } = req.body;
 
+        const user = await Admin.findOne({ email });
 
-// module.exports.loginUser = async (req, res) => {
-//     try {
-//         let user = await Admin.findOne({
-//             email: req.body.email
-//         });
+        if (!user) {
+            req.flash("error", "Email does not exist!");
+            return res.redirect("back");
+        }
 
-//         if (!user) {
-//             console.log("Invalid Email");
-//             return res.redirect('/login');
-//         }
-//         let matchPassword = await bcrypt.compare(
-//             req.body.password, user.password
-//         );
+        // Generate 6-digit OTP
+        const otp = crypto.randomInt(100000, 999999).toString();
 
-//         if (!matchPassword) {
-//             console.log("Password Incorrect");
-//             return res.redirect('/login');
-//         }
-//         res.cookie('userData', user._id, {
-//             maxAge: 1000 * 60 * 60 * 24,
-//             httpOnly: true
-//         });
-//         console.log("Login SuccessFully");
-//         return res.redirect('/')
-//     }
-//     catch (err) {
-//         console.log(err);
-//     }
-// }
+        console.log("Generated OTP :", otp);
 
+        // Hash OTP
+        const hashOTP = await bcrypt.hash(otp, 10);
 
-// module.exports.logout = (req, res) => {
-//     res.clearCookie('userData');
-//     return res.redirect('/login');
-// }
+        // Save OTP & Expiry (5 minutes)
+        user.otp = hashOTP;
+        user.otpExpires = Date.now() + 5 * 60 * 1000;
+
+        await user.save();
+
+        // Save Email in Session
+        req.session.resetEmail = email;
+
+        // Send Email
+        await transporter.sendMail({
+
+            from: process.env.EMAIL_USER,
+
+            to: email,
+
+            subject: "Password Reset OTP",
+
+            html: `
+                <h2>Password Reset OTP</h2>
+
+                <p>Hello ${user.fname},</p>
+
+                <h1>${otp}</h1>
+
+                <p>This OTP is valid for only 5 minutes.</p>
+
+                <br>
+
+                <>Thank You.</>
+            `
+
+        });
+
+        req.flash("success", "OTP sent successfully.");
+
+        return res.redirect("/verifyOTP");
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+        req.flash("error", "Failed to send OTP.");
+
+        return res.redirect("back");
+
+    }
+
+}
+
+module.exports.verifyOTPPage = (req, res) => {
+
+    try {
+
+        if (!req.session.resetEmail) {
+
+            return res.redirect('/forgetPassword');
+
+        }
+
+        return res.render('verify-otp');
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+    }
+
+}
+
+module.exports.verifyOTP = async (req, res) => {
+
+    try {
+
+        const { otp } = req.body;
+
+        const email = req.session.resetEmail;
+
+        if (!email) {
+
+            req.flash("error", "Session Expired.");
+
+            return res.redirect('/forgetPassword');
+
+        }
+
+        const user = await Admin.findOne({ email });
+
+        if (!user) {
+
+            req.flash("error", "User not found.");
+
+            return res.redirect('/forgetPassword');
+
+        }
+
+        if (user.otpExpires < Date.now()) {
+
+            req.flash("error", "OTP Expired.");
+
+            return res.redirect('/forgetPassword');
+
+        }
+
+        const matchOTP = await bcrypt.compare(otp, user.otp);
+
+        if (!matchOTP) {
+
+            req.flash("error", "Invalid OTP");
+
+            return res.redirect("back");
+
+        }
+
+        req.session.otpVerified = true;
+
+        req.flash("success", "OTP Verified Successfully");
+
+        return res.redirect('/newPassword');
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+    }
+
+}
+
+module.exports.newPasswordPage = (req, res) => {
+
+    try {
+
+        if (!req.session.otpVerified) {
+
+            req.flash("error", "Verify OTP First.");
+
+            return res.redirect("/forgetPassword");
+
+        }
+
+        return res.render("new-password");
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+    }
+
+}
+
+module.exports.changeForgotPassword = async (req, res) => {
+
+    try {
+
+        const { npass, cpass } = req.body;
+
+        if (npass !== cpass) {
+
+            req.flash("error", "Confirm Password does not match.");
+
+            return res.redirect("back");
+
+        }
+
+        const email = req.session.resetEmail;
+
+        const user = await Admin.findOne({ email });
+
+        if (!user) {
+
+            req.flash("error", "User not found.");
+
+            return res.redirect("/forgetPassword");
+
+        }
+
+        const hashPassword = await bcrypt.hash(npass, 10);
+
+        user.password = hashPassword;
+
+        // Clear OTP
+        user.otp = null;
+        user.otpExpires = null;
+
+        await user.save();
+
+        // Destroy Session
+        req.session.resetEmail = null;
+        req.session.otpVerified = null;
+
+        req.flash("success", "Password Changed Successfully.");
+
+        return res.redirect("/login");
+
+    }
+
+    catch (err) {
+
+        console.log(err);
+
+    }
+
+}
 
 module.exports.logout = (req, res, next) => {
 

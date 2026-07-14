@@ -21,6 +21,6 @@ route.get('/edit-extraCategory/:id',role.checkRole('Super Admin' , 'Admin' ),aut
 route.post('/update-extraCategory/:id',role.checkRole('Super Admin' , 'Admin' ),auth.checkAuth,extraCategoryController.updateExtraCategory);
 
 // delete
-route.get('/delete-extraCategory/:id',auth.checkAuth,extraCategoryController.deleteExtraCategory);
+route.get('/delete-extraCategory/:id',role.checkRole('Super Admin' , 'Admin' ),auth.checkAuth,extraCategoryController.deleteExtraCategory);
 
 module.exports = route;
