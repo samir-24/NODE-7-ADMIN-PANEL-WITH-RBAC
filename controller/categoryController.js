@@ -19,7 +19,7 @@ const deleteCategoryImage = (imagePath) => {
 module.exports.addCategoryPage = (req, res) => {
     try {
         return res.render('add-category');
-    }
+    }   
     catch (err) {
         console.log(err);
     }
@@ -182,6 +182,37 @@ module.exports.changeStatus = async (req, res) => {
         });
 
         req.flash("success", "Category Status Updated Successfully");
+
+        return res.redirect("/category/view-category");
+
+    } catch (err) {
+        console.log(err);
+        req.flash("error", "Something Went Wrong");
+        return res.redirect("/category/view-category");
+    }
+};
+
+module.exports.deleteCategory = async (req, res) => {
+    try {
+
+        const id = req.params.id;
+
+        const category = await Category.findById(id);
+
+        if (!category) {
+            req.flash("error", "Category Not Found");
+            return res.redirect("/category/view-category");
+        }
+
+        // Delete image
+        deleteCategoryImage(category.categoryImage);
+
+        // Soft Delete
+        await Category.findByIdAndUpdate(id, {
+            isDeleted: true
+        });
+
+        req.flash("success", "Category Deleted Successfully");
 
         return res.redirect("/category/view-category");
 

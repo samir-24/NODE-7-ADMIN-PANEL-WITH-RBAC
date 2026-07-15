@@ -24,4 +24,6 @@ route.post('/update-category/:id',role.checkRole('Super Admin' , 'Admin' , 'Mana
 
 route.get('/changeStatus/:id',role.checkRole('Super Admin' , 'Admin' , 'Manager'),auth.checkAuth,categoryController.changeStatus);
 
+route.get("/delete-category/:id",role.checkRole('Super Admin' , 'Admin' ), categoryController.deleteCategory);
+
 module.exports = route;
