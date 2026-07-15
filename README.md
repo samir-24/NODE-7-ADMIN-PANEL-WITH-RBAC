@@ -86,4 +86,46 @@ The purpose of this project is to demonstrate backend development skills, databa
 - LOGIN
 <img width="1919" height="927" alt="login" src="https://github.com/user-attachments/assets/a859d6a5-3a87-44da-9050-a59bc07579aa" />
 
+-CATEGORY ADD
+<img width="1886" height="929" alt="category-add" src="https://github.com/user-attachments/assets/7fcc05de-5a4f-4cb7-bd7b-132c9c577446" />
+
+-CATEGORY ADDED
+<img width="1896" height="928" alt="added-tablet" src="https://github.com/user-attachments/assets/a847adeb-2c54-4dbf-af51-d6ce82bf4079" />
+<img width="1916" height="917" alt="added-cat" src="https://github.com/user-attachments/assets/2655a6f0-b0c3-4a7e-8f12-ee882fa786c1" />
+
+
+-SUB CATEGORY ADD
+<img width="1899" height="935" alt="add-subcategorry" src="https://github.com/user-attachments/assets/9fa1a568-3ba2-4c6a-8b1c-f3dc3d719c20" />
+
+-SUB CATEGORY ADDED 
+<img width="1910" height="933" alt="added-subcategory" src="https://github.com/user-attachments/assets/108a32e4-6837-4464-82f1-31f8c2828a80" />
+
+-EXTRA CATEGORY ADD  
+<img width="1897" height="942" alt="extra-category" src="https://github.com/user-attachments/assets/a996aa93-d205-4050-89c6-d98966d2ac5c" />
+
+-EXTRA CATEGORY ADDED
+<img width="1917" height="937" alt="added-extra=category" src="https://github.com/user-attachments/assets/29680461-5b56-4ea1-839a-e91cfa394b04" />
+
+-FLASH-MESSAGE
+<img width="1916" height="935" alt="flash-mes" src="https://github.com/user-attachments/assets/d1f6573f-d90a-4928-83cc-d96d113d0eb0" />
+
+-PRODUCT ADD
+<img width="1898" height="940" alt="add-product2" src="https://github.com/user-attachments/assets/b93bfbdd-cbbe-4574-933f-1aa9590c9c2b" />
+<img width="1898" height="931" alt="add-product" src="https://github.com/user-attachments/assets/259bc6f2-559f-42bf-a2ac-c51bd16e8f05" />
+
+-PRODUCT ADDED
+<img width="1896" height="930" alt="added-product" src="https://github.com/user-attachments/assets/afc8fc97-2886-4a78-815c-72a2af4e8966" />
+
+-DARK THEME 
+<img width="1907" height="943" alt="DARK-THEME" src="https://github.com/user-attachments/assets/356c7195-61b6-4794-aca0-529dc311048b" />
+
+-VIEW CATEGORY
+<img width="1894" height="899" alt="view-category" src="https://github.com/user-attachments/assets/59f576fb-50b6-420e-80c9-93a30ad9cdc2" />
+
+-VIEW SUB CATEGORY
+<img width="1910" height="929" alt="view-subCat" src="https://github.com/user-attachments/assets/3c418c10-ae9a-440c-ab22-6a14de43f5e2" />
+
+-VIEW EXTRA SUB CATEGORY
+<img width="1904" height="920" alt="view-extraSubCat" src="https://github.com/user-attachments/assets/68de8d49-78fd-4ecd-b059-987cfa20c14b" />
+
 
