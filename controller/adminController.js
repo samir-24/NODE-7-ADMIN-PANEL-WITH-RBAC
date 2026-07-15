@@ -4,7 +4,7 @@ const fs = require('fs');
 const bcrypt = require('bcrypt');
 const role = require('../config/roleMiddleware');
 const transporter = require("../config/emailConfig");
-const crypto = require("crypto");   
+const crypto = require("crypto");
 
 const deleteAdminAvatar = (avatar) => {
     if (!avatar) {
@@ -109,7 +109,7 @@ module.exports.updatePassword = async (req, res) => {
         if (!matchPassword) {
             console.log("Incorrect Current Password");
             req.flash("error", "Current Password is incorrect!");
-            return res.redirect("back");
+            return res.redirect("/resetPassword");
         }
 
         // Check new password is not same as current password
@@ -121,14 +121,14 @@ module.exports.updatePassword = async (req, res) => {
         if (samePassword) {
             console.log("New Password cannot be same as Current Password");
             req.flash("error", "New Password cannot be same as Current Password!");
-            return res.redirect("back");
+            return res.redirect("/resetPassword");
         }
 
         // Check confirm password
         if (req.body.npass !== req.body.cpass) {
             console.log("Confirm Password does not match");
             req.flash("error", "Confirm Password does not match!");
-            return res.redirect("back");
+            return res.redirect("/resetPassword");
         }
 
         // Hash new password
@@ -148,7 +148,8 @@ module.exports.updatePassword = async (req, res) => {
 
             if (err) {
                 console.log(err);
-                return res.redirect("back");
+                req.flash("error", "Logout failed.");
+                return res.redirect("/resetPassword");
             }
 
             req.session.destroy(() => {
@@ -161,7 +162,7 @@ module.exports.updatePassword = async (req, res) => {
 
         console.log(err);
         req.flash("error", "Something went wrong!");
-        return res.redirect("back");
+        return res.redirect("/resetPassword");
 
     }
 };
@@ -175,8 +176,11 @@ module.exports.sendOTP = async (req, res) => {
         const user = await Admin.findOne({ email });
 
         if (!user) {
+
             req.flash("error", "Email does not exist!");
-            return res.redirect("back");
+
+            return res.redirect("/forgetPassword");
+
         }
 
         // Generate 6-digit OTP
@@ -233,7 +237,8 @@ module.exports.sendOTP = async (req, res) => {
 
         req.flash("error", "Failed to send OTP.");
 
-        return res.redirect("back");
+        return res.redirect("/forgetPassword");
+
 
     }
 
@@ -287,11 +292,11 @@ module.exports.verifyOTP = async (req, res) => {
 
         }
 
-        if (user.otpExpires < Date.now()) {
+        if (!user.otpExpires || user.otpExpires < Date.now()) {
 
-            req.flash("error", "OTP Expired.");
+            req.flash("error", "OTP Expired. Please request a new OTP.");
 
-            return res.redirect('/forgetPassword');
+            return res.redirect("/forgetPassword");
 
         }
 
@@ -301,8 +306,7 @@ module.exports.verifyOTP = async (req, res) => {
 
             req.flash("error", "Invalid OTP");
 
-            return res.redirect("back");
-
+            return res.redirect("/verifyOTP");
         }
 
         req.session.otpVerified = true;
@@ -316,6 +320,10 @@ module.exports.verifyOTP = async (req, res) => {
     catch (err) {
 
         console.log(err);
+
+        req.flash("error", "Something went wrong.");
+
+        return res.redirect("/verifyOTP");
 
     }
 
@@ -355,10 +363,9 @@ module.exports.changeForgotPassword = async (req, res) => {
 
             req.flash("error", "Confirm Password does not match.");
 
-            return res.redirect("back");
+            return res.redirect("/newPassword");
 
         }
-
         const email = req.session.resetEmail;
 
         const user = await Admin.findOne({ email });
@@ -394,6 +401,10 @@ module.exports.changeForgotPassword = async (req, res) => {
     catch (err) {
 
         console.log(err);
+
+        req.flash("error", "Something went wrong.");
+
+        return res.redirect("/newPassword");
 
     }
 
