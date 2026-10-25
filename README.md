@@ -57,10 +57,6 @@ The purpose of this project is to demonstrate backend development skills, databa
 9. Added CRUD functionality for Events.
 10. Tested all functionalities and database operations.
 
-- EXPLANATION VIDEO
-
-  https://drive.google.com/drive/folders/1eUqk8qyynmBAJCT8XJhXsrf9RxyOexZA?usp=sharing
-
   
 #SCREENSHOTS 
 
